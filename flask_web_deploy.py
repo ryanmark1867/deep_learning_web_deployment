@@ -91,27 +91,36 @@ def show_prediction():
     '''
     # the scoring parameters are sent to this page as parameters on the URL link from home.html
     # load the scoring parameter values into a dataframe
-    # create and load scoring parameters dataframe (containing the scoring parameters)that will be fed into the pipelines
-    score_df = pd.DataFrame(columns=scoring_columns)
-    print("score_df before load is "+str(score_df))
-    for col in scoring_columns:
-        print("value for "+col+" is: "+str(request.args.get(col)))    
-        score_df.at[0,col] = request.args.get(col)
-   # print details about scoring parameters
-    print("score_df: ",score_df)
-    print("score_df.dtypes: ",score_df.dtypes)
-    print("score_df.iloc[0]",score_df.iloc[0])
-    print("shape of score_df.iloc[0] is: ",score_df.iloc[0].shape)
+    # create and load scoring parameters dictionary (containing the scoring parameters)that will be fed into the pipelines
+    scoring_dict = {}
+    for col in config['scoring_columns']:
+        print("value for "+col+" is: "+str(request.args.get(col))) 
+        scoring_dict[col] = str(request.args.get(col))
+#        score_df.at[0,col] = request.args.get(col)
+    # hardcode size_type_bin for now
+    scoring_dict['size_type_bin'] = str(request.args.get('size_type'))+' 1'
+    # print details about scoring parameters
+    print("score_dict: ",score_dict)
+    input_dict = {name: tf.convert_to_tensor([value]) for name, value in scoring_dict.items()}
+    predictions = loaded_model.predict(input_dict)
+    prob = tf.nn.sigmoid(predictions[0])
+
+    print(
+        "This property has a %.1f percent probability of "
+        "having a price over the median." % (100 * prob)
+    )
+    '''
     pred_class,pred_idx,outputs = learner.predict(score_df.iloc[0])
     for col in scoring_columns:
         print("pred_class "+str(col)+" is: "+str(pred_class[col]))
     print("pred_idx is: "+str(pred_idx))
     print("outputs is: "+str(outputs))
     # get a result string from the value of the model's prediction
-    if outputs[0] >= outputs[1]:
-        predict_string = "Prediction is: individual has income less than 50k"
+    '''
+    if prob < 0.5:
+        predict_string = "Prediction is: property has a price less than median"
     else:
-        predict_string = "Prediction is: individual has income greater than 50k"
+        predict_string = "Prediction is: property has a price more than median"
     # build parameter to pass on to show-prediction.html
     prediction = {'prediction_key':predict_string}
     # render the page that will show the prediction
