@@ -2,14 +2,15 @@ general:
    debug_on: False
    logging_level: "WARNING" # switch to control logging - WARNING for full logging; ERROR to minimize logging
    BATCH_SIZE: 1000
-scoring_columns: # categorical columns
+scoring_columns_cat: # categorical columns
       - 'location'
-      - 'rooms'
-      - 'property-type'
+      - 'size_type'
+      - 'property_type'
       - 'furnishing'
-      - 'size-type'
+scoring_columns_cont:
+      - 'rooms'
       - 'bathrooms'
-      - 'car-parks'
+      - 'car_parks'
       - 'size'
 file_names:
    saved_model: 'kl_real_estate_keras_preprocessing_model'

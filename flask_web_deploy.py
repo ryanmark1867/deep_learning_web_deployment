@@ -31,9 +31,7 @@ from io import StringIO
 import requests
 import json
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler, StandardScaler
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-%matplotlib inline
+
 import os
 import yaml
 import math
@@ -93,14 +91,15 @@ def show_prediction():
     # load the scoring parameter values into a dataframe
     # create and load scoring parameters dictionary (containing the scoring parameters)that will be fed into the pipelines
     scoring_dict = {}
-    for col in config['scoring_columns']:
+    for col in config['scoring_columns_cat']:
         print("value for "+col+" is: "+str(request.args.get(col))) 
         scoring_dict[col] = str(request.args.get(col))
-#        score_df.at[0,col] = request.args.get(col)
+    for col in config['scoring_columns_cont']:
+        scoring_dict[col] = float(request.args.get(col))
     # hardcode size_type_bin for now
     scoring_dict['size_type_bin'] = str(request.args.get('size_type'))+' 1'
     # print details about scoring parameters
-    print("score_dict: ",score_dict)
+    print("scoring_dict: ",scoring_dict)
     input_dict = {name: tf.convert_to_tensor([value]) for name, value in scoring_dict.items()}
     predictions = loaded_model.predict(input_dict)
     prob = tf.nn.sigmoid(predictions[0])
