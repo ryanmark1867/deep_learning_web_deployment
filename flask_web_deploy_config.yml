@@ -1,0 +1,6 @@
+general:
+   debug_on: False
+   logging_level: "WARNING" # switch to control logging - WARNING for full logging; ERROR to minimize logging
+   BATCH_SIZE: 1000
+file_names:
+   model_filename: scmodelapr26_2020_5.h5
