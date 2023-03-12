@@ -57,9 +57,9 @@ print("path is:",rawpath)
 print("model_path is: ",model_path)
 # load the model
 
-model_file_name = os.path.join(model_path,config['file_names']['saved_model'])
+model_directory_name = os.path.join(model_path,config['file_names']['saved_model'])
 
-loaded_model = tf.keras.models.load_model(model_file_name)
+loaded_model = tf.keras.models.load_model(model_directory_name)
 
 def get_model_path():
     '''get the path for data files
