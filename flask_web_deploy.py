@@ -108,14 +108,7 @@ def show_prediction():
         "This property has a %.1f percent probability of "
         "having a price over the median." % (100 * prob)
     )
-    '''
-    pred_class,pred_idx,outputs = learner.predict(score_df.iloc[0])
-    for col in scoring_columns:
-        print("pred_class "+str(col)+" is: "+str(pred_class[col]))
-    print("pred_idx is: "+str(pred_idx))
-    print("outputs is: "+str(outputs))
-    # get a result string from the value of the model's prediction
-    '''
+
     if prob < 0.5:
         predict_string = "Prediction is: property has a price less than median"
     else:
