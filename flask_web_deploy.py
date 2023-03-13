@@ -61,16 +61,6 @@ model_directory_name = os.path.join(model_path,config['file_names']['saved_model
 
 loaded_model = tf.keras.models.load_model(model_directory_name)
 
-def get_model_path():
-    '''get the path for data files
-    
-    Returns:
-        path: path for model files
-    '''
-    rawpath = os.getcwd()
-    # models are in a directory called "models" in the same directory as this module
-    path = os.path.abspath(os.path.join(rawpath, 'models'))
-    return(path)
 
 app = Flask(__name__)
 
