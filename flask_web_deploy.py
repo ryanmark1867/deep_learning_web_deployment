@@ -68,7 +68,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():   
     ''' render home.html - page that is served at localhost that allows user to enter model scoring parameters'''
-    title_text = "fastai deployment"
+    title_text = "web deployment of Keras model"
     title = {'titlename':title_text}
     return render_template('home.html',title=title) 
     
