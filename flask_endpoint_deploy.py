@@ -61,11 +61,7 @@ model_path = os.path.abspath(os.path.join(rawpath, 'models'))
 
 print("path is:",rawpath)
 print("model_path is: ",model_path)
-# load the model
 
-#model_directory_name = os.path.join(model_path,config['file_names']['saved_model'])
-
-#loaded_model = tf.keras.models.load_model(model_directory_name)
 
 # function from https://github.com/googleapis/python-aiplatform/blob/main/samples/snippets/prediction_service/predict_custom_trained_model_sample.py
 def predict_custom_trained_model_sample(
