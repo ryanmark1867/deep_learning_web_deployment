@@ -7,6 +7,12 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 
+# import libraries required for endpoint access
+from typing import Dict, List, Union
+from google.cloud import aiplatform
+from google.protobuf import json_format
+from google.protobuf.struct_pb2 import Value
+
 from tensorflow.keras import layers
 from tensorflow.keras.callbacks import ModelCheckpoint, Callback, EarlyStopping
 
@@ -57,10 +63,48 @@ print("path is:",rawpath)
 print("model_path is: ",model_path)
 # load the model
 
-model_directory_name = os.path.join(model_path,config['file_names']['saved_model'])
+#model_directory_name = os.path.join(model_path,config['file_names']['saved_model'])
 
-loaded_model = tf.keras.models.load_model(model_directory_name)
+#loaded_model = tf.keras.models.load_model(model_directory_name)
 
+# function from https://github.com/googleapis/python-aiplatform/blob/main/samples/snippets/prediction_service/predict_custom_trained_model_sample.py
+def predict_custom_trained_model_sample(
+    project: str,
+    endpoint_id: str,
+    instances: Union[Dict, List[Dict]],
+    location: str = "us-central1",
+    api_endpoint: str = "us-central1-aiplatform.googleapis.com",
+):
+    """
+    `instances` can be either single instance of type dict or a list
+    of instances.
+    """
+    # The AI Platform services require regional API endpoints.
+    client_options = {"api_endpoint": api_endpoint}
+    # Initialize client that will be used to create and send requests.
+    # This client only needs to be created once, and can be reused for multiple requests.
+    client = aiplatform.gapic.PredictionServiceClient(client_options=client_options)
+    # The format of each instance should conform to the deployed model's prediction input schema.
+    instances = instances if type(instances) == list else [instances]
+    instances = [
+        json_format.ParseDict(instance_dict, Value()) for instance_dict in instances
+    ]
+    parameters_dict = {}
+    parameters = json_format.ParseDict(parameters_dict, Value())
+    endpoint = client.endpoint_path(
+        project=project, location=location, endpoint=endpoint_id
+    )
+    response = client.predict(
+        endpoint=endpoint, instances=instances, parameters=parameters
+    )
+    print("response")
+    print(" deployed_model_id:", response.deployed_model_id)
+    # The predictions are a google.protobuf.Value representation of the model's predictions.
+    predictions = response.predictions
+    print("prediction is: ",predictions)
+    return(predictions)
+#    for prediction in predictions:
+#        print(" prediction:", dict(prediction))
 
 app = Flask(__name__)
 
@@ -88,10 +132,19 @@ def show_prediction():
         scoring_dict[col] = float(request.args.get(col))
     # hardcode size_type_bin for now
     scoring_dict['size_type_bin'] = str(request.args.get('size_type'))+' 1'
+    # endpoint deployment must have no extraneous features
+    scoring_dict.pop('size_type')
     # print details about scoring parameters
     print("scoring_dict: ",scoring_dict)
-    input_dict = {name: tf.convert_to_tensor([value]) for name, value in scoring_dict.items()}
-    predictions = loaded_model.predict(input_dict)
+    #input_dict = {name: tf.convert_to_tensor([value]) for name, value in scoring_dict.items()}
+    input_dict = {name: [value] for name, value in scoring_dict.items()}
+    print("input_dict: ",input_dict)
+    predictions = predict_custom_trained_model_sample(
+    project="1028332300603",
+    endpoint_id="389644930651258880",
+    location="us-central1",
+    #instance_dict= {name: tf.convert_to_tensor([value]) for name, value in scoring_dict.items()})
+    instances = input_dict)
     prob = tf.nn.sigmoid(predictions[0])
 
     print(
