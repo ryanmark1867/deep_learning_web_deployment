@@ -4,7 +4,7 @@ This repo contains the code for a simple web deployment for a trained deep learn
 
 Here are the key files in this repo:
 
-- [flask_web_deploy.py](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy.py) - the Flask server module that loads the model specified in the config file [flask_web_deploy_config.yml](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy_config.yml)  and contains view functions to drive the home.html and show-prediction.html pages. This version is 100% local and reads the stored model from the local filesystem.
+- [flask_web_deploy.py](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy.py) - the Flask server module that loads the model specified in the config file [flask_web_deploy_config.yml](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy_config.yml)  and contains view functions to drive the `home.html` and show-`prediction.html` pages. This version is 100% local and reads the stored model from the local filesystem.
 
 - [flask_endpoint_deploy.py](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_endpoint_deploy.py) - the Flask server module that interacts with the model deployed in a Vertex AI endpoint and gets the input parameters and shows the model predictions in the same web pages as  [flask_web_deploy.py](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy.py)
 

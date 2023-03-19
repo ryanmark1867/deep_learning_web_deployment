@@ -134,12 +134,11 @@ def show_prediction():
     input_dict = {name: [value] for name, value in scoring_dict.items()}
     print("input_dict: ",input_dict)
     # call to the function to get a prediction from the Vertex AI endpoint
-    # note that project and endpoint need to be updated with the values for your endpoint
-    # you can get these values by clicking on the Sample Request link
-    # in the Deploy & Test tab for your model version in the Vertex AI Model Registry
     predictions = predict_custom_trained_model_sample(
-    project="1028332300603",
-    endpoint_id="389644930651258880",
+    #project="1028332300603",
+    #endpoint_id="389644930651258880",
+    project = config['endpoint']['project'],
+    endpoint_id = config['endpoint']['endpoint_id'],
     location="us-central1",
     instances = input_dict)
     prob = tf.nn.sigmoid(predictions[0])
