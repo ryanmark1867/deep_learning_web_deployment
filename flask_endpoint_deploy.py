@@ -135,11 +135,9 @@ def show_prediction():
     print("input_dict: ",input_dict)
     # call to the function to get a prediction from the Vertex AI endpoint
     predictions = predict_custom_trained_model_sample(
-    #project="1028332300603",
-    #endpoint_id="389644930651258880",
     project = config['endpoint']['project'],
     endpoint_id = config['endpoint']['endpoint_id'],
-    location="us-central1",
+    location = config['endpoint']['location'],
     instances = input_dict)
     prob = tf.nn.sigmoid(predictions[0])
 
