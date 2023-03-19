@@ -103,8 +103,7 @@ def predict_custom_trained_model_sample(
     predictions = response.predictions
     print("prediction is: ",predictions)
     return(predictions)
-#    for prediction in predictions:
-#        print(" prediction:", dict(prediction))
+
 
 app = Flask(__name__)
 
@@ -136,14 +135,12 @@ def show_prediction():
     scoring_dict.pop('size_type')
     # print details about scoring parameters
     print("scoring_dict: ",scoring_dict)
-    #input_dict = {name: tf.convert_to_tensor([value]) for name, value in scoring_dict.items()}
     input_dict = {name: [value] for name, value in scoring_dict.items()}
     print("input_dict: ",input_dict)
     predictions = predict_custom_trained_model_sample(
     project="1028332300603",
     endpoint_id="389644930651258880",
     location="us-central1",
-    #instance_dict= {name: tf.convert_to_tensor([value]) for name, value in scoring_dict.items()})
     instances = input_dict)
     prob = tf.nn.sigmoid(predictions[0])
 
