@@ -20,7 +20,7 @@ Here are the key files in this repo:
 
   
 
-Here are the articles that describe the deployments in more details:
+Here are the articles that describe the deployments in more detail:
 
 - [Deployment with a  model in the local file system](https://markryan-69718.medium.com/a-better-way-to-deploy-keras-models-a9d5764de964?sk=7ee732fad6eb2310fb0094cc44bff4bd)
 - [Deployment with a model served from a Vertex AI endpoint](https://markryan-69718.medium.com/deploy-keras-models-with-vertex-ai-32e5b6d59f4f?sk=f36754de23fccdb3fa8a06b43c1271a9)
