@@ -16,7 +16,7 @@ Here are the key files in this repo:
 
 - [main2.css](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/static/css/main2.css) CSS file to control the rendering of the HTML pages
 
-- [models/kl_real_estate_keras_preproce](https://github.com/ryanmark1867/deep_learning_web_deployment/tree/master/models/kl_real_estate_keras_preprocessing_model) model that is served by this application, as specified in the config file [flask_web_deploy_config.yml](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy_config.yml)
+- [models/kl_real_estate_keras_preprocessing_model](https://github.com/ryanmark1867/deep_learning_web_deployment/tree/master/models/kl_real_estate_keras_preprocessing_model) model that is served by this application, as specified in the config file [flask_web_deploy_config.yml](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy_config.yml)
 
   
 
