@@ -18,7 +18,7 @@ scoring_columns_cont:
 # in the Deploy & Test tab for your model version in the Vertex AI Model Registry
 endpoint:
    project: "1028332300603"
-   endpoint_id: "389644930651258880"
+   endpoint_id: "1968684365625950208"
    location: "us-central1"
 file_names:
    saved_model: 'kl_real_estate_keras_preprocessing_model'

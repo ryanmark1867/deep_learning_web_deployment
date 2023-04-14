@@ -18,7 +18,9 @@ Here are the key files in this repo:
 
 - [models/kl_real_estate_keras_preprocessing_model](https://github.com/ryanmark1867/deep_learning_web_deployment/tree/master/models/kl_real_estate_keras_preprocessing_model) model that is served by this application, as specified in the config file [flask_web_deploy_config.yml](https://github.com/ryanmark1867/deep_learning_web_deployment/blob/master/flask_web_deploy_config.yml)
 
-  
+There is a [separate repo](https://github.com/ryanmark1867/deep_learning_best_practices) containing the code to [prep the data](https://github.com/ryanmark1867/deep_learning_best_practices/blob/master/notebooks/data_preparation.ipynb) and [train the model](https://github.com/ryanmark1867/deep_learning_best_practices/blob/master/notebooks/model_training_keras_preprocessing.ipynb).   
+
+
 
 Here are the articles that describe the deployments in more detail:
 

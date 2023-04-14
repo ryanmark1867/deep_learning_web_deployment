@@ -43,6 +43,9 @@ import yaml
 import math
 from flask import Flask, render_template, request
 
+import tensorflow as tf
+print(tf.__version__)
+
 # load config gile
 current_path = os.getcwd()
 print("current directory is: "+current_path)
@@ -53,6 +56,8 @@ try:
         config = yaml.safe_load(c_file)
 except Exception as e:
     print('Error reading the config file')
+    
+print("TF VERSION IS: ",tf.__version__)
 
 # build the path for the trained model
 rawpath = os.getcwd()
