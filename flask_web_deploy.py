@@ -1,4 +1,4 @@
-# example of using Flask to deploy a fastai deep learning model trained on a tabular dataset
+# example of using Flask to deploy a Keras deep learning model trained on a tabular dataset
 import json
 import os
 import urllib.request
