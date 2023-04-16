@@ -1,4 +1,4 @@
-# example of using Flask to access a Vertex AI deployment of a fastai deep learning model trained on a tabular dataset
+# example of using Flask to access a Vertex AI deployment of a Keras deep learning model trained on a tabular dataset
 import json
 import os
 import urllib.request
