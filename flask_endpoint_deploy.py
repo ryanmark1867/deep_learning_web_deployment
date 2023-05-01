@@ -18,10 +18,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint, Callback, EarlyStopping
 
 # carry over imports from custom layer version
 import time
-import seaborn as sns
 # import datetime, timedelta
 import datetime
-import pydotplus
 from datetime import datetime, timedelta
 from datetime import date
 from dateutil import relativedelta
@@ -30,13 +28,11 @@ import pandas as pd
 import pickle
 from pickle import dump
 from pickle import load
-from sklearn.base import BaseEstimator
-from sklearn.base import TransformerMixin
 # DSX code to import uploaded documents
 from io import StringIO
 import requests
 import json
-from sklearn.preprocessing import LabelEncoder, MinMaxScaler, StandardScaler
+
 
 import os
 import yaml
